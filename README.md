@@ -23,3 +23,9 @@ done
 
 ```
 
+## fastqc
+First run using script 0
+
+## bbduk
+Per assembly protocol from Eddie (provided by collaborators?), ran bbduk to remove phix.
+

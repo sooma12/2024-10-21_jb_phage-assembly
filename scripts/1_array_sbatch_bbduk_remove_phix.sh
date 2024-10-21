@@ -17,6 +17,8 @@ source ./config.cfg
 # Load java
 module load OpenJDK/19.0.1
 
+export PATH=$PATH:/work/geisingerlab/Mark/software/bbmap/
+
 echo "sample sheet located at $SAMPLE_SHEET_BBDUK"
 
 mkdir -p $TRIMMED_FQ

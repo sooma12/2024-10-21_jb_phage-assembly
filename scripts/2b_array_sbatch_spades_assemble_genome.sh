@@ -29,7 +29,4 @@ echo "assembling $name"
 
 mkdir -p ./spades_assembly/$name
 
-spades.py --careful -t 8 -m 12 -k 55,77,99,127 /
--1 $r1 /
--2 $r2 /
--o ./spades_assembly/$name
+spades.py --careful -t 8 -m 12 -k 55,77,99,127 -1 $r1 -2 $r2 -o ./spades_assembly/$name

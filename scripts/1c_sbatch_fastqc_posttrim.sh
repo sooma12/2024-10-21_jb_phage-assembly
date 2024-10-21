@@ -28,7 +28,6 @@ echo "Running fastqc in directory $CLEANED_FASTQ_INPUTS"
 fastqc $CLEANED_FASTQ_INPUTS/*.fastq.gz
 
 echo "Cleaning up logs and output files"
-mkdir -p $SCRIPT_DIR/logs
 mv $SCRIPT_DIR/fastq_breseq_* $SCRIPT_DIR/logs
 mkdir -p $CLEANED_QC_OUT_DIR/fastqc_html $CLEANED_QC_OUT_DIR/fastqc_zip
 mv $CLEANED_FASTQ_INPUTS/*fastqc.html $CLEANED_QC_OUT_DIR/fastqc_html

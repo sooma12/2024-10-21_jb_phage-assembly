@@ -19,16 +19,18 @@ source activate BINF-12-2021
 
 echo "sample sheet located at $SAMPLE_SHEET_SPADES"
 
+
 mkdir -p $TRIMMED_FQ
 
 name=$(sed -n "$SLURM_ARRAY_TASK_ID"p $SAMPLE_SHEET_SPADES |  awk '{print $1}')
 r1=$(sed -n "$SLURM_ARRAY_TASK_ID"p $SAMPLE_SHEET_SPADES |  awk '{print $2}')
 r2=$(sed -n "$SLURM_ARRAY_TASK_ID"p $SAMPLE_SHEET_SPADES |  awk '{print $3}')
 
+echo "assembling $name"
 
-
+mkdir -p ./spades_assembly/$name
 
 spades.py --careful -t 8 -m 12 -k 55,77,99,127 /
---pe1-1 illumina_reads/phage.nophix.clean.R1.fastq.gz /
---pe1-2 illumina_reads/phage.nophix.clean.R2.fastq.gz /
--o spades_assembly
+--pe1-1 $r1 /
+--pe1-2 $r2 /
+-o ./spades_assembly/$name

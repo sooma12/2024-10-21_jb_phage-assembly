@@ -19,7 +19,6 @@ source activate BINF-12-2021
 
 echo "sample sheet located at $SAMPLE_SHEET_SPADES"
 
-
 mkdir -p $TRIMMED_FQ
 
 name=$(sed -n "$SLURM_ARRAY_TASK_ID"p $SAMPLE_SHEET_SPADES |  awk '{print $1}')
@@ -31,6 +30,6 @@ echo "assembling $name"
 mkdir -p ./spades_assembly/$name
 
 spades.py --careful -t 8 -m 12 -k 55,77,99,127 /
---pe1-1 $r1 /
---pe1-2 $r2 /
+-1 $r1 /
+-2 $r2 /
 -o ./spades_assembly/$name

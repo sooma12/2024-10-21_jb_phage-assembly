@@ -13,17 +13,17 @@
 
 source ./config.cfg
 
+sample_sheet=$SAMPLE_SHEET_SPADES
+
 # SPAdes is in bioinformatics module
 module load anaconda3/2021.11
 source activate BINF-12-2021
 
-echo "sample sheet located at $SAMPLE_SHEET_SPADES"
+echo "sample sheet located at $sample_sheet"
 
-mkdir -p $TRIMMED_FQ
-
-name=$(sed -n "$SLURM_ARRAY_TASK_ID"p $SAMPLE_SHEET_SPADES |  awk '{print $1}')
-r1=$(sed -n "$SLURM_ARRAY_TASK_ID"p $SAMPLE_SHEET_SPADES |  awk '{print $2}')
-r2=$(sed -n "$SLURM_ARRAY_TASK_ID"p $SAMPLE_SHEET_SPADES |  awk '{print $3}')
+name=$(sed -n "$SLURM_ARRAY_TASK_ID"p $sample_sheet |  awk '{print $1}')
+r1=$(sed -n "$SLURM_ARRAY_TASK_ID"p $sample_sheet |  awk '{print $2}')
+r2=$(sed -n "$SLURM_ARRAY_TASK_ID"p $sample_sheet |  awk '{print $3}')
 
 echo "assembling $name"
 

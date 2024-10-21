@@ -47,3 +47,47 @@ Options:
 ref=/bioinformatics/bbmap/resources/adapters.fa ktrim=r tpe tbo minlen=100
 qtrim=rl trimq=28
 
+## Subsampling?
+
+```text
+for file in ./*.fastq.gz; do
+> echo $(zcat $file | wc -l )/4 | bc
+> done
+
+1846581
+1846581
+2253974
+2253974
+1999545
+1999545
+1682253
+1682253
+```
+
+Per protocol, 
+"Excessive coverage can be detrimental to genome assembly and result in the generation of spurious contigs, homopolymer and indel errors. Most de Bruijn assemblers work best between 60-100x coverage."
+
+Number of reads = (Expected coverage * Expected genome size in bp) / Read length in bp
+
+Read length = 151?
+Use expected coverage = 100
+Per EG, expect ~43 kb genome.
+
+Num.reads = 100 coverage * 43,000 bp / 151 bp = 28477 reads
+
+Ran following code:
+
+```bash
+module load seqtk/1.3
+cd /work/geisingerlab/Mark/genome_assembly/2024-10-21_jb_phage-assembly/input/fastq_trimmed
+
+mkdir -p ../fastq_subsamples
+
+for file in ./*.fastq.gz; do
+  filename=$(basename $file)
+  seqtk sample -s 100 $file 28500 > ../fastq_subsamples/28-5k_subsample_${filename}
+done
+
+```
+
+

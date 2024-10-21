@@ -29,7 +29,7 @@ r2=$(sed -n "$SLURM_ARRAY_TASK_ID"p $SAMPLE_SHEET_BBDUK |  awk '{print $3}')
 
 bbduk.sh in1=$r1 in2=$r2 \
 out1=${BASE_DIR}/input/fastq_trimmed/${name}_trimmed_R1.fastq.gz out2=${BASE_DIR}/input/fastq_trimmed/${name}_trimmed_R2.fastq.gz \
-ref=/bioinformatics/bbmap/resources/adapters.fa \
+ref=${ADAPTERS} \
 ktrim=r \
 tpe \
 tbo \

@@ -5,4 +5,4 @@
 /output
 *.fasta
 /spades_assembly
-
+*.txt

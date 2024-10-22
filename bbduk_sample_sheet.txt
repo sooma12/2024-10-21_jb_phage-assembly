@@ -1,4 +1,0 @@
-JBphi_20 /work/geisingerlab/Mark/genome_assembly/2024-10-21_jb_phage-assembly/input/fastq_raw/JBphi_20_S162_R1_001.fastq.gz /work/geisingerlab/Mark/genome_assembly/2024-10-21_jb_phage-assembly/input/fastq_raw/JBphi_20_S162_R2_001.fastq.gz
-JBphi_21 /work/geisingerlab/Mark/genome_assembly/2024-10-21_jb_phage-assembly/input/fastq_raw/JBphi_21_S163_R1_001.fastq.gz /work/geisingerlab/Mark/genome_assembly/2024-10-21_jb_phage-assembly/input/fastq_raw/JBphi_21_S163_R2_001.fastq.gz
-JBphi_36 /work/geisingerlab/Mark/genome_assembly/2024-10-21_jb_phage-assembly/input/fastq_raw/JBphi_36_S164_R1_001.fastq.gz /work/geisingerlab/Mark/genome_assembly/2024-10-21_jb_phage-assembly/input/fastq_raw/JBphi_36_S164_R2_001.fastq.gz
-JBphi_44 /work/geisingerlab/Mark/genome_assembly/2024-10-21_jb_phage-assembly/input/fastq_raw/JBphi_44_S165_R1_001.fastq.gz /work/geisingerlab/Mark/genome_assembly/2024-10-21_jb_phage-assembly/input/fastq_raw/JBphi_44_S165_R2_001.fastq.gz

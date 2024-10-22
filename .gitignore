@@ -6,3 +6,5 @@
 *.fasta
 /spades_assembly
 *.txt
+/mapping
+

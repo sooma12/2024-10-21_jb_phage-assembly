@@ -1,0 +1,8 @@
+/input
+/data
+*.fastq
+/logs
+/output
+*.fasta
+/spades_assembly
+

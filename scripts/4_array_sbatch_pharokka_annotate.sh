@@ -18,6 +18,7 @@ echo "Loading environment and tools"
 module load anaconda3/2021.05
 eval "$(conda shell.bash hook)"
 conda activate /work/geisingerlab/conda_env/pharokka
+export PATH=$PATH:/work/geisingerlab/conda_env/pharokka/bin
 
 mkdir -p $ANNOT_DIR/pharokka/input_contigs
 

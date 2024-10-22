@@ -14,6 +14,7 @@
 source ./config.cfg
 
 sample_sheet=$SAMPLE_SHEET_SPADES
+spades_dir=$SPADES_DIR
 
 # SPAdes is in bioinformatics module
 module load anaconda3/2021.11
@@ -27,6 +28,6 @@ r2=$(sed -n "$SLURM_ARRAY_TASK_ID"p $sample_sheet |  awk '{print $3}')
 
 echo "assembling $name"
 
-mkdir -p ./spades_assembly/$name
+mkdir -p $spades_dir/$name
 
-spades.py --careful -t 8 -m 12 -k 55,77,99,127 -1 $r1 -2 $r2 -o ./spades_assembly/$name
+spades.py --careful -t 8 -m 12 -k 55,77,99,127 -1 $r1 -2 $r2 -o $spades_dir/$name

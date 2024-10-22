@@ -91,3 +91,52 @@ done
 ```
 
 
+## Assembly
+
+Assembled using SPAdes with suggested parameters:
+
+spades.py --careful -t 8 -m 12 -k 55,77,99,127 -1 $r1 -2 $r2 -o ./spades_assembly/$name
+
+Go into spades_assembly directory and count contigs and scaffolds:
+
+```bash
+for dir in ./*; do echo $dir; echo 'contigs:'; grep -c '>' $dir/contigs.fasta; echo 'scaffolds:'; grep -c '>' $dir/scaffolds.fasta; done
+```
+
+```text
+./JBphi_20
+contigs:
+2
+scaffolds:
+2
+./JBphi_21
+contigs:
+2
+scaffolds:
+2
+./JBphi_36
+contigs:
+2
+scaffolds:
+2
+./JBphi_44
+contigs:
+7
+scaffolds:
+7
+```
+
+
+```bash
+# Recommendation for filtering contigs
+seqkit fx2tab contigs.fasta | csvtk mutate -H -t -f 1 -p "cov_(.+)" | csvtk
+mutate -H -t -f 1 -p "length_([0-9]+)" | awk -F "\t" '$4>=10 && $5>=500' | seqkit
+tab2fx > filtered_contigs.fasta
+
+```
+
+## Mapping reads back to assembly
+
+
+## Consider annotations - see BINF6308
+

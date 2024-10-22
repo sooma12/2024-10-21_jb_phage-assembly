@@ -21,7 +21,7 @@ export PATH=$PATH:/work/geisingerlab/Mark/software/bbmap/
 mkdir -p $MAP_DIR/covstats $MAP_DIR/mapped_sam $MAP_DIR/mapped_bam $MAP_DIR/stats $MAP_DIR/unmapped
 
 # Get directory name of sample for this array node
-sample=$(find $SPADES_DIR -maxdepth 1 -mindepth 1 -type d | sort | head -n "$SLURM_ARRAY_TASK_ID" | tail -n 1 | cut -f 2 -d"/")
+sample=$(find $SPADES_DIR -maxdepth 1 -mindepth 1 -type d | sort | head -n "$SLURM_ARRAY_TASK_ID" | awk -F/ '{print $NF}' | tail -n 1)
 
 # Get contigs.fa file for this array node.  Copy to MAP_DIR, renaming them to phage name as well.
 sample_contigs=${sample}_contigs.fasta

@@ -11,12 +11,14 @@
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=soo.m@northeastern.edu
 
+# Performs the following:
+
 source ./config.cfg
 # For loading bbmap
 module load OpenJDK/19.0.1
 export PATH=$PATH:/work/geisingerlab/Mark/software/bbmap/
 
-mkdir -p $MAP_DIR/covstats $MAP_DIR/mapped_sam
+mkdir -p $MAP_DIR/covstats $MAP_DIR/mapped_sam $MAP_DIR/mapped_bam $MAP_DIR/stats $MAP_DIR/unmapped
 
 # Get directory name of sample for this array node
 sample=$(find $SPADES_DIR -maxdepth 1 -mindepth 1 -type d | sort | head -n "$SLURM_ARRAY_TASK_ID" | tail -n 1 | cut -f 2 -d"/")
@@ -32,8 +34,20 @@ subsample_R2=$(find $BASE_DIR/input/fastq_subsamples -maxdepth 1 -mindepth 1 | g
 # UNNECESSARY? unzip the fastq files?? gunzip.
 
 # rum BBMap
-bbmap.sh ref=$MAP_DIR/$sample_contigs in1=$subsample_R1 in2=$subsample_R2 covstats=$MAP_DIR/covstats/${sample}_contig_covstats.txt out=$MAP_DIR/mapped_sam${sample}_contig.mapped.sam
+bbmap.sh ref=$MAP_DIR/$sample_contigs in1=$subsample_R1 in2=$subsample_R2 covstats=$MAP_DIR/covstats/${sample}_contig_covstats.txt out=$MAP_DIR/mapped_sam/${sample}_contig.mapped.sam
 
 # UNNECESSARY? compress the fastq files??
 # $ gzip ../illumina_reads/phage.nophix.clean.R1.fastq.gz
 # ../illumina_reads/phage.nophix.clean.R2.fastq.gz
+
+# Load samtools
+module load samtools/1.19.2
+# SAM to BAM and index
+samtools view -bS -F4 $MAP_DIR/mapped_sam/${sample}_contig.mapped.sam | samtools sort - -o $MAP_DIR/mapped_bam/${sample}_contig.mapped.sorted.bam
+samtools index $MAP_DIR/mapped_bam/${sample}_contig.mapped.sorted.bam
+
+# samtools stats
+samtools flagstat $MAP_DIR/mapped_bam/${sample}_contig.mapped.sorted.bam > $MAP_DIR/stats/${sample}_mapping_stats.txt
+
+# collect unmapped reads
+samtools view -bS -f4 $MAP_DIR/mapped_sam/${sample}_contig.mapped.sam | samtools sort - -o $MAP_DIR/unmapped/${sample}_unmapped_reads.bam

@@ -32,6 +32,8 @@ subsample_R1=$(find $BASE_DIR/input/fastq_subsamples -maxdepth 1 -mindepth 1 | g
 subsample_R2=$(find $BASE_DIR/input/fastq_subsamples -maxdepth 1 -mindepth 1 | grep $sample | grep "R2")
 
 # UNNECESSARY? unzip the fastq files?? gunzip.
+gunzip $subsample_R1
+gunzip $subsample_R2
 
 # rum BBMap
 bbmap.sh ref=$MAP_DIR/$sample_contigs in1=$subsample_R1 in2=$subsample_R2 covstats=$MAP_DIR/covstats/${sample}_contig_covstats.txt out=$MAP_DIR/mapped_sam/${sample}_contig.mapped.sam

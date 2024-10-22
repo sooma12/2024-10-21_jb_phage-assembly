@@ -137,6 +137,22 @@ tab2fx > filtered_contigs.fasta
 
 ## Mapping reads back to assembly
 
+Script 3
 
-## Consider annotations - see BINF6308
+Note, bbmap initially threw an error saying that the subsample .fastq.gz files were not gzipped
+
+Tried gunzipping these files and got an error that they were not actually gzipped?!
+
+I copied the subsamples in input/fastq_subsamples to a subfolder input/fastq_subsamples/2024-10-22_gzips/
+
+Then removed .gz extensions from subsample .fastq.gz files
+
+## Annotation
+
+Pharokka
+https://academic.oup.com/bioinformatics/article/39/1/btac776/6858464
+
+George Bouras, Roshan Nepal, Ghais Houtak, Alkis James Psaltis, Peter-John Wormald, Sarah Vreugde, Pharokka: a fast scalable bacteriophage annotation tool, Bioinformatics, Volume 39, Issue 1, January 2023, btac776, https://doi.org/10.1093/bioinformatics/btac776.
+
+If you use pharokka, please see the full Citation section for a list of all programs pharokka uses, in order to fully recognise the creators of these tools for their work.
 

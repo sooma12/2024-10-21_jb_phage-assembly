@@ -1,0 +1,5 @@
+*.fasta
+*.fastq
+/input
+/output
+/spades_assembly

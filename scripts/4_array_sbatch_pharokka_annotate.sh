@@ -48,5 +48,5 @@ pharokka_plotter.py -i $ANNOT_DIR/pharokka/input_contigs/${sample}_contig.fasta 
 -o $ANNOT_DIR/pharokka/$sample \
 -p $sample \
 -t 'Phage $sample' \
---label-hypotheticals \
+--label_hypotheticals \
 -f

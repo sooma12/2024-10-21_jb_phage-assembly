@@ -37,8 +37,16 @@ mkdir -p $ANNOT_DIR/pharokka/$sample
 # -d <wherever database installed>
 pharokka.py -i $ANNOT_DIR/pharokka/input_contigs/${sample}_contig.fasta \
 -o $ANNOT_DIR/pharokka/$sample \
--d /work/geisingerlab/Mark/genome_assembly/pharokka_databases \
--t 8 -p $sample
+-d /work/geisingerlab/Mark/genome_assembly/pharokka_databases/pharokka_v1.4.0_databases/ \
+-t 8 \
+-p $sample \
+-f
 
 # Make plot
-pharokka_plotter.py -i $ANNOT_DIR/pharokka/input_contigs/${sample}_contig.fasta -n $sample_pharokka_plot -o $ANNOT_DIR/pharokka/$sample -p $sample -t 'Phage $sample'
+pharokka_plotter.py -i $ANNOT_DIR/pharokka/input_contigs/${sample}_contig.fasta \
+-n ${sample}_pharokka_plot \
+-o $ANNOT_DIR/pharokka/$sample \
+-p $sample \
+-t 'Phage $sample' \
+--label-hypotheticals \
+-f
